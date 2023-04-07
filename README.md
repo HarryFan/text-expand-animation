@@ -64,7 +64,6 @@ CSS 樣式
 ```
 body {  font-family: Arial, sans-serif;  display: flex;  justify-content: center;  align-items: center;  height: 100vh;  margin: 0;  background-color: #f0f0f0;
 }#text {  font-size: 3rem;  font-weight: bold;  color: #333;  background: linear-gradient(90deg, rgba(58,123,241,1) 0%, rgba(58,96,240,1) 50%,
-```
 
 rgba(122,49,222,1) 100%);
 -webkit-background-clip: text;
@@ -73,7 +72,7 @@ text-align: center;
 padding: 10px;
 border-radius: 5px;
 }
-
+```
 
 
 這些樣式包括：
