@@ -1,66 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f0f0f0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
 
-    #text {
-      font-size: 3rem;
-      font-weight: bold;
-      color: #333;
-      background: linear-gradient(90deg, rgba(58,123,241,1) 0%, rgba(58,96,240,1) 50%, rgba(122,49,222,1) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-align: center;
-      padding: 10px;
-      border-radius: 5px;
-    }
-  </style>
+        #text {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+            background: linear-gradient(90deg, rgba(58, 123, 241, 1) 0%, rgba(58, 96, 240, 1) 50%, rgba(122, 49, 222, 1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
+
 <body>
-  <div id="text"></div>
+    <div id="text"></div>
 
-  <script>
-    const textElement = document.getElementById("text");
-    const word = "Developer";
+    <script>
+        const textElement = document.getElementById("text");
+        const word = "Developer";
 
-    function generateSteps(word) {
-      const wordLength = word.length;
-      const steps = [];
-      const padding = " ".repeat(Math.floor(wordLength / 2));
+        // 生成每個動畫步驟的函數
+        function generateSteps(word) {
+            const wordLength = word.length;
+            const steps = [];
+            const padding = " ".repeat(Math.floor(wordLength / 2));
 
-      for (let i = 0; i <= Math.floor(wordLength / 2); i++) {
-        const leftPart = i === 0 ? word[0] : padding.slice(0, -i) + word.slice(0, i);
-        const rightPart = word.slice(-(i + 1)) + padding.slice(i + 1);
-        const step = leftPart + rightPart;
-        steps.push(step);
-      }
+            // 循環遍歷單詞的一半長度
+            for (let i = 0; i <= Math.floor(wordLength / 2); i++) {
+                // 計算左側部分
+                const leftPart = i === 0 ? word[0] : padding.slice(0, -i) + word.slice(0, i);
+                // 計算右側部分
+                const rightPart = word.slice(-(i + 1)) + padding.slice(i + 1);
+                // 組合左右部分
+                const step = leftPart + rightPart;
+                // 將步驟添加到 steps 陣列中
+                steps.push(step);
+            }
 
-      return steps;
-    }
+            return steps;
+        }
 
-    const steps = generateSteps(word);
-    let currentStep = 0;
+        // 使用 generateSteps 函數生成動畫步驟
+        const steps = generateSteps(word); 
+        let currentStep = 0; // 當前步驟計數器
 
-    function animateText() {
-      if (currentStep < steps.length) {
-        textElement.textContent = steps[currentStep];
-        currentStep++;
-        setTimeout(animateText, 500);
-      }
-    }
+        // 顯示動畫的函數
+        function animateText() {
+            // 如果當前步驟小於總步驟數
+            if (currentStep < steps.length) {
+                // 更新文字元素的內容
+                textElement.textContent = steps[currentStep];
+                // 增加當前步驟計數器
+                currentStep++;
+                // 使用 setTimeout 設定下一個步驟的延時
+                setTimeout(animateText, 500);
+            }
+        }
 
-    animateText();
-  </script>
+        // 執行動畫
+        animateText();
+    </script>
 </body>
+
 </html>
