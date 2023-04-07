@@ -1,17 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="style.css"></script>
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
 
-    </style>
+    #text {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #333;
+      background: linear-gradient(90deg, rgba(58,123,241,1) 0%, rgba(58,96,240,1) 50%, rgba(122,49,222,1) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-    <span id="text"></span>
-    <script src="script.js"></script>
+  <div id="text"></div>
+
+  <script>
+    const textElement = document.getElementById("text");
+    const word = "Developer";
+
+    function generateSteps(word) {
+      const wordLength = word.length;
+      const steps = [];
+      const padding = " ".repeat(Math.floor(wordLength / 2));
+
+      for (let i = 0; i <= Math.floor(wordLength / 2); i++) {
+        const leftPart = i === 0 ? word[0] : padding.slice(0, -i) + word.slice(0, i);
+        const rightPart = word.slice(-(i + 1)) + padding.slice(i + 1);
+        const step = leftPart + rightPart;
+        steps.push(step);
+      }
+
+      return steps;
+    }
+
+    const steps = generateSteps(word);
+    let currentStep = 0;
+
+    function animateText() {
+      if (currentStep < steps.length) {
+        textElement.textContent = steps[currentStep];
+        currentStep++;
+        setTimeout(animateText, 500);
+      }
+    }
+
+    animateText();
+  </script>
 </body>
 </html>
